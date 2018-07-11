@@ -1,17 +1,21 @@
 // Notes list that is going to be shown in the browser
-const notes = [{
-  _id: NotesApp.createNoteId(),
-  title: 'Note title goes here!',
-  text: 'This is my very first note text! 😀',
-}, {
-  _id: NotesApp.createNoteId(),
-  title: 'Second awesome note!',
-  text: 'This is my second note text!',
-}];
+const notes = [
+    {
+      _id: NotesApp.createNoteId(),
+      title: 'Note title goes here!',
+      text: 'This is my very first note text! 😀',
+    },
+    {
+      _id: NotesApp.createNoteId(),
+      title: 'Second awesome note!',
+      text: 'This is my second note text!',
+    }
+];
 
 const addNewNote = NotesApp.addNewNote;
 
 // Named functions
+<<<<<<< HEAD
 function getNoteById(_id) {
     // How can we find a note inside our notes array?
     let found = {};
@@ -31,6 +35,22 @@ const updateNote = function(_id, title, text, index) {
     notes[index].title = title;
     notes[index].text = text;
     notes[index].index = index;
+=======
+function getNoteById(searchId) {
+    let found = {};
+    notes.forEach(function(note) {
+        if (note._id === searchId) {
+            found = note;
+        }
+    });
+    return found;
+};
+
+const updateNote = function(_id, title, text, index) {
+  notes[index]._id = _id;
+  notes[index].text = text;
+  notes[index].title = title;
+>>>>>>> upstream/master
 };
 
 // Declared functions
