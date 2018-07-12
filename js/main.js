@@ -16,10 +16,10 @@ const addNewNote = NotesApp.addNewNote;
 
 // Named functions
 function getNoteById(searchId) {
-    let found;
+    let foundIndex;
     notes.forEach(function(note, index) {
         if(note._id === searchId){
-            found = index;
+            foundIndex = index;
             return;
         }
     });
@@ -43,12 +43,13 @@ const insertNote = function(_id, title, text) {
 };
 
 const saveNote = () => NotesApp.saveNote(function(_id, title, text) {
-  let index = getNoteById(_id);
-  if(index !== undefined) {
-      updateNote(_id,title,text,index);
-  } else {
-      insertNote(_id, title, text);
-  }
+    let index = getNoteById(_id);
+    if(index !== undefined) {
+        updateNote(_id,title,text,index);
+    } else {
+        insertNote(_id, title, text);
+    };
+    NotesApp.renderNotesList();
 });
 
 const onClickNote = (event) => NotesApp.onClick(event, function(_id) {
