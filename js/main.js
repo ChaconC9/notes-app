@@ -6,20 +6,21 @@ const notes = [
         text: 'This is my very first note text! 😀',
     },
     {
-        _id: NotesApp.createNoteId(),
-        title: 'Second awesome note!',
-        text: 'This is my second note text!',
-    }
+      _id: NotesApp.createNoteId(),
+      title: 'Second awesome note!',
+      text: 'This is my second note text!',
+  },
 ];
 
 const addNewNote = NotesApp.addNewNote;
 
 // Named functions
 function getNoteById(searchId) {
-    let foundIndex;
+    let found;
     notes.forEach(function(note, index) {
-        if (note._id === searchId) {
-            foundIndex = index;
+        if(note._id === searchId){
+            found = index;
+            return;
         }
     });
     return foundIndex;
@@ -33,8 +34,7 @@ const updateNote = function(_id, title, text, index) {
 
 // Declared functions
 const insertNote = function(_id, title, text) {
-    let note =
-    {
+    let note = {
         _id: _id,
         title: title,
         text: text,
@@ -42,22 +42,23 @@ const insertNote = function(_id, title, text) {
     notes.push(note);
 };
 
-const saveNote = () => NotesApp.saveNote(function(_id, title, text) { let index = getNoteById(_id);
-    if (index !== undefined) {
-        updateNote(_id, title, text, index)
-    } else {
-        insertNote(_id, title, text);
-    }
+const saveNote = () => NotesApp.saveNote(function(_id, title, text) {
+  let index = getNoteById(_id);
+  if(index !== undefined) {
+      updateNote(_id,title,text,index);
+  } else {
+      insertNote(_id, title, text);
+  }
 });
 
 const onClickNote = (event) => NotesApp.onClick(event, function(_id) {
-    console.log('Click button Add Note 🖱');
-    let note;
-    let index = getNoteById(_id);
-    if (index !== undefined) {
-        note = notes[index]
-    }
-    NotesApp.showNote(note);
+  console.log('Click button Add Note 🖱');
+  let note;
+  let index = getNoteById(_id);
+  if(index !== undefined){
+      note = notes[index]
+  }
+  NotesApp.showNote(note);
 });
 
 document.addEventListener('DOMContentLoaded', function(event) {
