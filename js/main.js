@@ -43,16 +43,16 @@ const insertNote = function(_id, title, text) {
 };
 
 const saveNote = () => NotesApp.saveNote(function(_id, title, text) {
-    if (title === '') {
-        title = 'Write something dude!'
-    }
-    let index = getNoteById(_id);
-    if(index !== undefined) {
-        updateNote(_id,title,text,index);
-    } else {
-        insertNote(_id, title, text);
-    };
-    NotesApp.renderNotesList();
+  if(title === '') {
+    title = 'Write a something dude';
+  }
+  let index = getNoteById(_id);
+  if(index !== undefined) {
+      updateNote(_id,title,text,index);
+  } else {
+      insertNote(_id, title, text);
+  }
+  NotesApp.renderNotesList();
 });
 
 const onClickNote = (event) => NotesApp.onClick(event, function(_id) {
