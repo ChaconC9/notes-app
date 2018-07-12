@@ -61,11 +61,11 @@ const onClickNote = (event) => NotesApp.onClick(event, function(_id) {
   let index = getNoteById(_id);
   if(index !== undefined){
       note = notes[index]
+      if (note.title === 'Write a something dude') {
+          note.title = '';
+      }
+      NotesApp.showNote(note);
   }
-  if (note.title === 'Write a something dude') {
-      note.title = '';
-  }
-  NotesApp.showNote(note);
 });
 
 document.addEventListener('DOMContentLoaded', function(event) {
