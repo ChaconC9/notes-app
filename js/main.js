@@ -43,6 +43,9 @@ const insertNote = function(_id, title, text) {
 };
 
 const saveNote = () => NotesApp.saveNote(function(_id, title, text) {
+    if (title === '') {
+        title = 'Write something dude!'
+    }
     let index = getNoteById(_id);
     if(index !== undefined) {
         updateNote(_id,title,text,index);
